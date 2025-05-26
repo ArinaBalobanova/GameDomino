@@ -22,7 +22,7 @@ namespace Domino
         /// </summary>
         public required string Password { get; set; }
         /// <summary>
-        /// Пароль пользователя
+        /// Рейтинг игрока 
         /// </summary>
         public int Rating { get; set; }
 
