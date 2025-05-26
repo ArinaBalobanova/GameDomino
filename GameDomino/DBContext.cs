@@ -17,7 +17,7 @@ namespace Domino
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = "Host=localhost;Port=5432;Database=Game;Username=postgres;Password=12345";
+                var connectionString = "Host=localhost;Port=5432;Database=postgresdb;Username=postgres;Password=12345";
                 optionsBuilder.UseNpgsql(connectionString,
                     o => o.MigrationsAssembly("GameDomino"));
             }

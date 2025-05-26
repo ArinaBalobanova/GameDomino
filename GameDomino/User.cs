@@ -22,9 +22,9 @@ namespace Domino
         /// </summary>
         public required string Password { get; set; }
         /// <summary>
-        /// Рейтинг игрока
+        /// Пароль пользователя
         /// </summary>
-        public int Rating { get; set; }   
-       
+        public int Rating { get; set; }
+
     }
 }

@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace GameDomino.Data.Migrations
+namespace GameDomino.Migrations
 {
     /// <inheritdoc />
-    public partial class AddUserRating : Migration
+    public partial class CreateUserRating : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

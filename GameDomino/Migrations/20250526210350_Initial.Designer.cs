@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace GameDomino.Data.Migrations
+namespace GameDomino.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250526183946_AddUserRating")]
-    partial class AddUserRating
+    [Migration("20250526210350_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,9 +38,6 @@ namespace GameDomino.Data.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
