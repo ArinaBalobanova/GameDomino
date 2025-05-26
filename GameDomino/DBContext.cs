@@ -19,7 +19,7 @@ namespace Domino
             {
                 var connectionString = "Host=localhost;Port=5432;Database=Game;Username=postgres;Password=12345";
                 optionsBuilder.UseNpgsql(connectionString,
-                    o => o.MigrationsAssembly("GameDomino")); // Укажите имя вашего проекта
+                    o => o.MigrationsAssembly("GameDomino"));
             }
         }
 

@@ -25,7 +25,7 @@ namespace Domino
             this.CenterToScreen();
             _dbContext = new ApplicationDbContext();
 
-            LanguageManager.LanguageChanged += UpdateUI; // Подписываемся на событие
+            LanguageManager.LanguageChanged += UpdateUI;
             UpdateUI();
         }
 
@@ -37,7 +37,7 @@ namespace Domino
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
-            LanguageManager.LanguageChanged -= UpdateUI; // Отписываемся
+            LanguageManager.LanguageChanged -= UpdateUI;
             base.OnFormClosed(e);
         }
 
