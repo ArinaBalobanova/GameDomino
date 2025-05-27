@@ -1,5 +1,6 @@
 ﻿using Domino2;
 using Domino2.Resources;
+using GameDomino;
 using GameDomino.Resources;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -11,19 +12,18 @@ namespace Domino
     /// </summary>
     public partial class Entry : Form
     {
-        private readonly ApplicationDbContext _dbContext;
-        private Guid _userId;
+        private readonly IUserService _userService;
         private bool isPasswordVisible = false;
 
         /// <summary>
         /// конструктор формы входа
         /// </summary>
-        public Entry()
+        public Entry(IUserService userService)
         {
+            _userService = userService;
             InitializeComponent();
             textBoxPassword.PasswordChar = '*';
             this.CenterToScreen();
-            _dbContext = new ApplicationDbContext();
 
             LanguageManager.LanguageChanged += UpdateUI;
             UpdateUI();
@@ -31,7 +31,8 @@ namespace Domino
 
         private void UpdateUI()
         {
-            
+
+            this.Text = EntryFormResources.EntryFormTitle;
             lblTitle.Text = EntryFormResources.lblTitle;
         }
 
@@ -50,42 +51,37 @@ namespace Domino
             {
                 textBoxLogin.BackColor = Color.LightPink;
                 textBoxPassword.BackColor = Color.LightPink;
-
                 return;
             }
 
-            if (UserExists(login, pass))
+            if (_userService.UserExists(login, pass, out Guid userId))
             {
-                MessageBox.Show(EntryFormResources.LoginSuccessMessage, EntryFormResources.LoginSuccessTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(EntryFormResources.LoginSuccessMessage,
+                              EntryFormResources.LoginSuccessTitle,
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Information);
 
-                var nextForm = new MainWindow(_userId);
-                nextForm.Show();
+                var mainForm = Program.Container.Resolve<MainWindow>();
+                mainForm.SetUserId(userId);
+                mainForm.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show(EntryFormResources.LoginErrorMessage, EntryFormResources.LoginErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(EntryFormResources.LoginErrorMessage,
+                              EntryFormResources.LoginErrorTitle,
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
             }
 
         }
-
-        private bool UserExists(string login, string password)
-        {
-
-            var user = _dbContext.Users.FirstOrDefault(u => u.Login == login && u.Password == RepeateMethod.Hashing(password));
-            if (user != null)
-            {
-                _userId = user.Id;
-                return true;
-            }
-            return false;
-        }
-
 
         private void btnRegistration_Click_1(object sender, EventArgs e)
         {
-            var nextform = new Registration();
-            nextform.Show();
+            var registrationForm = Program.Container.Resolve<Registration>();
+
+            registrationForm.Show();
+
             this.Hide();
         }
 

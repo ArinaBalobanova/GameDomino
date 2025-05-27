@@ -12,11 +12,15 @@ namespace Domino2
 {
     public partial class MainWindow : Form
     {
+        private Guid _userId;
         public MainWindow(Guid userId)
         {
             InitializeComponent();
         }
-
+        public void SetUserId(Guid userId)
+        {
+            _userId = userId;
+        }
         private void MainWindow_Load(object sender, EventArgs e)
         {
 

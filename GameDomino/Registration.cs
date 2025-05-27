@@ -1,4 +1,5 @@
 ﻿using Domino2;
+using GameDomino;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 
@@ -9,49 +10,18 @@ namespace Domino
     /// </summary>
     public partial class Registration : Form
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly IUserService _userService;
         private bool isPasswordVisible = false;
-
-
         /// <summary>
         /// конструктор формы регистрации
         /// </summary>
-        public Registration()
+        public Registration(IUserService userService)
         {
+            _userService = userService;
             InitializeComponent();
             textBoxPassword.PasswordChar = '*';
             txtPasswordRepeate.PasswordChar = '*';
             this.CenterToScreen();
-
-            _dbContext = new ApplicationDbContext();
-        }
-
-
-        private bool LoginIsTaken(string login)
-        {
-            return _dbContext.Users.FirstOrDefault(u => u.Login == login) != null;
-        }
-        private Guid RegisterNewUser(string login, string password)
-        {
-            try
-            {
-                var newUser = new User
-                {
-                    Login = login,
-                    Password = RepeateMethod.Hashing(password),
-                };
-
-                _dbContext.Users.Add(newUser);
-                _dbContext.SaveChanges();
-
-                return newUser.Id;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Произошла ошибка при регистрации: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
-
         }
 
         private void btnRegistration2_Click_1(object sender, EventArgs e)
@@ -81,27 +51,29 @@ namespace Domino
                 MessageBox.Show("Логин должен содержать от 2 до 20 символов, начинаться с буквы и состоять только из латинских букв и цифр.", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (LoginIsTaken(login))
+            if (_userService.LoginIsTaken(login))
             {
-                MessageBox.Show("Такой логин уже занят!", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Такой логин уже занят!", "Ошибка регистрации",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxLogin.Focus();
+                textBoxLogin.SelectAll();
                 return;
             }
-
             try
             {
-                Guid userId = RegisterNewUser(login, pass);
+                Guid userId = _userService.RegisterNewUser(login, pass);
+                MessageBox.Show("Регистрация прошла успешно!", "Успех",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MessageBox.Show("Регистрация прошла успешно!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                var nextForm = new MainWindow(userId);
-                nextForm.Show();
+                var mainForm = Program.Container.Resolve<MainWindow>();
+                mainForm.SetUserId(userId);
+                mainForm.Show();
                 this.Hide();
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка при регистрации: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Произошла ошибка при регистрации: {ex.Message}",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
