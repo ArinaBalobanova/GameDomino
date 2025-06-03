@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domino
 {
+    /// <summary>
+    /// Сервисный класс для работы с бд 
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly ApplicationDbContext _dbContext;
@@ -71,10 +74,16 @@ namespace Domino
         {
             return Regex.IsMatch(login, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$");
         }
+        /// <summary>
+        /// Получает всех пользователей из базы данных вместе с их рейтингами
+        /// </summary>
         public IEnumerable<User> GetAllUsersWithRatings()
         {
             return _dbContext.Users.ToList();
         }
+        /// <summary>
+        /// Освобождает ресурсы контекста базы данных
+        /// </summary>
         public void Dispose()
         {
             _dbContext?.Dispose();
