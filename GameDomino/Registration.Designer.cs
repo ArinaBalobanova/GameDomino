@@ -151,6 +151,7 @@
             Controls.Add(lblRegistration);
             Name = "Registration";
             Text = "Регистрация";
+            Load += Registration_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domino
 {
+    /// <summary>
+    /// Класс для локализации
+    /// </summary>
     public static class LanguageManager
     {
         public static event Action LanguageChanged;

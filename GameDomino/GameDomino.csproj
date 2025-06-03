@@ -28,12 +28,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EntryFormResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\RegistrationResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RegistrationResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\EntryFormResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EntryFormResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\RegistrationResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegistrationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

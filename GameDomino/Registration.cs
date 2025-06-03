@@ -1,7 +1,9 @@
 ﻿using Domino2;
 using GameDomino;
+using GameDomino.Resources;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Domino
 {
@@ -22,6 +24,18 @@ namespace Domino
             textBoxPassword.PasswordChar = '*';
             txtPasswordRepeate.PasswordChar = '*';
             this.CenterToScreen();
+            LanguageManager.LanguageChanged += UpdateUI;
+            UpdateUI();
+        }
+        private void UpdateUI()
+        {
+
+            this.Text = RegistrationResources.RegistrationForm;
+            lblRegistration.Text = RegistrationResources.lblRegistration;
+            lblLogin.Text = RegistrationResources.lblLogin;
+            lblPassword.Text = RegistrationResources.lblPassword;
+            lblPasswortRepeate.Text = RegistrationResources.lblPasswortRepeate;
+            btnRegistration2.Text = RegistrationResources.btnRegistration;
         }
 
         private void btnRegistration2_Click_1(object sender, EventArgs e)
@@ -33,27 +47,31 @@ namespace Domino
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(passRepeate))
             {
-                MessageBox.Show("Введите логин и пароль.", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(RegistrationResources.EmptyFieldsError,RegistrationResources.RegistrationErrorTitle,
+                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             if (pass != passRepeate)
             {
-                MessageBox.Show("Пароли не совпадают.", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(RegistrationResources.PasswordMismatchError, RegistrationResources.RegistrationErrorTitle,
+                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             if (!Regex.IsMatch(pass, @"^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"))
             {
-                MessageBox.Show("Пароль должен содержать минимум 8 символов, хотя бы одну цифру или спецсимвол, а также хотя бы одну заглавную и одну строчную латинскую букву.", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(RegistrationResources.PasswordRequirementsError,RegistrationResources.RegistrationErrorTitle,
+                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             if (!Regex.IsMatch(login, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$"))
             {
-                MessageBox.Show("Логин должен содержать от 2 до 20 символов, начинаться с буквы и состоять только из латинских букв и цифр.", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(RegistrationResources.LoginRequirementsError,RegistrationResources.RegistrationErrorTitle,
+                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             if (_userService.LoginIsTaken(login))
             {
-                MessageBox.Show("Такой логин уже занят!", "Ошибка регистрации",
+                MessageBox.Show(RegistrationResources.LoginTakenError,RegistrationResources.RegistrationErrorTitle,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxLogin.Focus();
                 textBoxLogin.SelectAll();
@@ -62,8 +80,8 @@ namespace Domino
             try
             {
                 Guid userId = _userService.RegisterNewUser(login, pass);
-                MessageBox.Show("Регистрация прошла успешно!", "Успех",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(RegistrationResources.RegistrationSuccessMessage,RegistrationResources.RegistrationSuccessTitle,
+                    MessageBoxButtons.OK,MessageBoxIcon.Information);
 
                 var mainForm = Program.Container.Resolve<MainWindow>();
                 mainForm.SetUserId(userId);
@@ -72,8 +90,8 @@ namespace Domino
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка при регистрации: {ex.Message}",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(RegistrationResources.RegistrationErrorTitle, ex.Message),
+                    RegistrationResources.RegistrationErrorMessage, MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -88,5 +106,11 @@ namespace Domino
             isPasswordVisible = !isPasswordVisible;
             RepeateMethod.TogglePasswordVisibility(txtPasswordRepeate, isPasswordVisible);
         }
+
+        private void Registration_Load(object sender, EventArgs e)
+        {
+
+        }
+        
     }
 }

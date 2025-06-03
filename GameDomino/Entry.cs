@@ -1,5 +1,5 @@
 ﻿using Domino2;
-using Domino2.Resources;
+using GameDomino.Resources;
 using GameDomino;
 using GameDomino.Resources;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +34,14 @@ namespace Domino
 
             this.Text = EntryFormResources.EntryFormTitle;
             lblTitle.Text = EntryFormResources.lblTitle;
+            lnlLogin.Text = EntryFormResources.lnlLogin;
+            labelPassword.Text = EntryFormResources.labelPassword;
+            btnEntry.Text = EntryFormResources.btnEntry;
+            lblNoAccount.Text = EntryFormResources.lblNoAccount;
+            btnRegistration.Text = EntryFormResources.btnRegistration;
+            btnRussian.Text = EntryFormResources.btnRussian;
+            btnEnglish.Text = EntryFormResources.btnEnglish;
+            
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)

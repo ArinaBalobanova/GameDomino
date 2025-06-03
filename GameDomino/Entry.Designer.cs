@@ -107,7 +107,7 @@
             // 
             // btnEntry
             // 
-            btnEntry.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btnEntry.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnEntry.Location = new Point(340, 272);
             btnEntry.Name = "btnEntry";
             btnEntry.Size = new Size(186, 38);
@@ -118,10 +118,10 @@
             // 
             // btnRegistration
             // 
-            btnRegistration.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            btnRegistration.Location = new Point(438, 332);
+            btnRegistration.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btnRegistration.Location = new Point(428, 331);
             btnRegistration.Name = "btnRegistration";
-            btnRegistration.Size = new Size(147, 29);
+            btnRegistration.Size = new Size(157, 30);
             btnRegistration.TabIndex = 8;
             btnRegistration.Text = "Регистрация";
             btnRegistration.UseVisualStyleBackColor = true;
@@ -129,9 +129,9 @@
             // 
             // btnRussian
             // 
-            btnRussian.Location = new Point(571, 25);
+            btnRussian.Location = new Point(577, 409);
             btnRussian.Name = "btnRussian";
-            btnRussian.Size = new Size(94, 29);
+            btnRussian.Size = new Size(112, 38);
             btnRussian.TabIndex = 9;
             btnRussian.Text = "Русский";
             btnRussian.UseVisualStyleBackColor = true;
@@ -139,10 +139,10 @@
             // 
             // btnEnglish
             // 
-            btnEnglish.Location = new Point(671, 25);
+            btnEnglish.Location = new Point(695, 409);
             btnEnglish.Name = "btnEnglish";
             btnEnglish.RightToLeft = RightToLeft.No;
-            btnEnglish.Size = new Size(117, 29);
+            btnEnglish.Size = new Size(123, 38);
             btnEnglish.TabIndex = 10;
             btnEnglish.Text = "Английский";
             btnEnglish.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(830, 459);
             Controls.Add(btnEnglish);
             Controls.Add(btnRussian);
             Controls.Add(btnRegistration);

@@ -15,7 +15,9 @@ namespace Domino
         {
             _dbContext = dbContext;
         }
-
+        /// <summary>
+        /// Проверка существует ли пользователь
+        /// </summary>
         public bool UserExists(string login, string password, out Guid userId)
         {
             userId = Guid.Empty;
@@ -30,13 +32,16 @@ namespace Domino
             }
             return false;
         }
-
+        /// <summary>
+        /// Регистрация нового пользователя 
+        /// </summary>
         public Guid RegisterNewUser(string login, string password)
         {
             var newUser = new User
             {
                 Login = login,
                 Password = RepeateMethod.Hashing(password),
+                Rating = 0
             };
 
             _dbContext.Users.Add(newUser);
@@ -44,22 +49,32 @@ namespace Domino
 
             return newUser.Id;
         }
-
+        /// <summary>
+        /// Проверка логина 
+        /// </summary>
         public bool LoginIsTaken(string login)
         {
             return _dbContext.Users.Any(u => u.Login == login);
         }
+        /// <summary>
+        /// Проверка пароля на требования 
+        /// </summary>
 
         public bool ValidatePassword(string password)
         {
             return Regex.IsMatch(password, @"^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$");
         }
-
+        /// <summary>
+        /// Проверка логина на требования
+        /// </summary>
         public bool ValidateLogin(string login)
         {
             return Regex.IsMatch(login, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$");
         }
-
+        public IEnumerable<User> GetAllUsersWithRatings()
+        {
+            return _dbContext.Users.ToList();
+        }
         public void Dispose()
         {
             _dbContext?.Dispose();

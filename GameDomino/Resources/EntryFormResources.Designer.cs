@@ -61,6 +61,42 @@ namespace GameDomino.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Английский.
+        /// </summary>
+        internal static string btnEnglish {
+            get {
+                return ResourceManager.GetString("btnEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вход.
+        /// </summary>
+        internal static string btnEntry {
+            get {
+                return ResourceManager.GetString("btnEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Регистрация .
+        /// </summary>
+        internal static string btnRegistration {
+            get {
+                return ResourceManager.GetString("btnRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Русский.
+        /// </summary>
+        internal static string btnRussian {
+            get {
+                return ResourceManager.GetString("btnRussian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Вход.
         /// </summary>
         internal static string EntryFormTitle {
@@ -70,11 +106,38 @@ namespace GameDomino.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль.
+        /// </summary>
+        internal static string labelPassword {
+            get {
+                return ResourceManager.GetString("labelPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Нет аккаунта?.
+        /// </summary>
+        internal static string lblNoAccount {
+            get {
+                return ResourceManager.GetString("lblNoAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Доминировние .
         /// </summary>
         internal static string lblTitle {
             get {
                 return ResourceManager.GetString("lblTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Логин.
+        /// </summary>
+        internal static string lnlLogin {
+            get {
+                return ResourceManager.GetString("lnlLogin", resourceCulture);
             }
         }
         

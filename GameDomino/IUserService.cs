@@ -9,5 +9,6 @@ namespace Domino
         bool LoginIsTaken(string login);
         bool ValidatePassword(string password);
         bool ValidateLogin(string login);
+        IEnumerable<User> GetAllUsersWithRatings();
     }
 }
