@@ -1,5 +1,7 @@
 ﻿
 
+using GameDomino.Resources;
+
 namespace GameDomino.Game
 {
     /// <summary>
@@ -61,7 +63,7 @@ namespace GameDomino.Game
                 _remainingTime = 60;
                 _gameOver = false;
 
-                OnGameEvent(new GameEventArgs("Игра началась!", GameEventType.TurnChanged));
+                OnGameEvent(new GameEventArgs(MainWindowResources.GameStartMessage, GameEventType.TurnChanged));
             });
         }
         /// <summary>
@@ -111,13 +113,13 @@ namespace GameDomino.Game
                     _playerScore += tileSum;
 
                     _isPlayerTurn = false;
-                    OnGameEvent(new GameEventArgs("Фишка размещена", GameEventType.TilePlaced));
-                    OnGameEvent(new GameEventArgs("Ход противника", GameEventType.TurnChanged));
+                    OnGameEvent(new GameEventArgs(MainWindowResources.C, GameEventType.TilePlaced));
+                    OnGameEvent(new GameEventArgs(MainWindowResources.YourTurnMessage, GameEventType.TurnChanged));
 
                     if (_playerTiles.Count == 0)
                     {
                         _gameOver = true;
-                        OnGameEvent(new GameEventArgs("Игрок победил!", GameEventType.GameOver));
+                        OnGameEvent(new GameEventArgs(MainWindowResources.WinningMessege, GameEventType.GameOver));
                     }
 
                     return true;
@@ -137,8 +139,7 @@ namespace GameDomino.Game
 
                 _isPlayerTurn = !_isPlayerTurn;
                 OnGameEvent(new GameEventArgs(
-                    _isPlayerTurn ? "Ваш ход" : "Ход противника",
-                    GameEventType.TurnChanged));
+                    _isPlayerTurn ? MainWindowResources.YourTurnMessage : MainWindowResources.EnemyTurnMessege, GameEventType.TurnChanged));
             });
         }
         /// <summary>

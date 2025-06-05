@@ -12,7 +12,7 @@ namespace GameDomino.Game
         public bool IsPlayerTurn { get; private set; } = true;
         public int PlayerScore { get; private set; }
         public int OpponentScore { get; private set; }
-        public int RemainingTime { get; private set; } 
+        public int RemainingTime { get; private set; } = 60;
         public bool GameOver { get; private set; }
 
 
@@ -30,7 +30,7 @@ namespace GameDomino.Game
             IsPlayerTurn = true;
             PlayerScore = 0;
             OpponentScore = 0;
-            RemainingTime = 600;
+            RemainingTime = 60;
             GameOver = false;
 
         }
@@ -71,7 +71,7 @@ namespace GameDomino.Game
             
             if (index >= 0 && index < PlayerTiles.Count)
             {
-                //надо добавть доп логику для размещнния фишек 
+               
                 SelectedTileIndex = index;
             }
         }

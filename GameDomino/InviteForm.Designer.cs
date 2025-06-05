@@ -34,10 +34,10 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 236);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "InviteForm";
-            Text = "InviteForm";
+            Text = "Приглашения";
             ResumeLayout(false);
         }
 

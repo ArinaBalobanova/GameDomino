@@ -1,5 +1,6 @@
 ﻿using GameDomino;
 using GameDomino.Game;
+using GameDomino.Resources;
 using NLog;
 
 
@@ -19,7 +20,7 @@ namespace Domino2
         private DominoTile _draggedTile;
         private Point _dragStart;
         private System.Windows.Forms.Timer _gameTimer;
-        
+
         /// <summary>
         /// конструктор формы главного окна
         /// </summary>
@@ -33,7 +34,18 @@ namespace Domino2
             SetupGame();
             this.MouseMove += new MouseEventHandler(mouseEvent);
             this.MouseClick += new MouseEventHandler(mouseClick);
-            
+            LanguageManager.LanguageChanged += UpdateUI;
+            UpdateUI();
+
+        }
+        private void UpdateUI()
+        {
+
+            this.Text = MainWindowResources.MainWindowForm;
+            btnNewGame.Text = MainWindowResources.btnNewGame;
+            btnPassTurn.Text = MainWindowResources.btnPassTurn;
+            lblRating.Text = MainWindowResources.lblRating;
+
         }
         public void SetUserId(Guid userId)
         {
@@ -252,6 +264,16 @@ namespace Domino2
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelGameBoard_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+       
+        private void listViewPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -34,6 +34,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EntryFormResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\MainWindowResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MainWindowResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\RegistrationResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -45,6 +50,10 @@
     <EmbeddedResource Update="Resources\EntryFormResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EntryFormResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\MainWindowResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainWindowResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\RegistrationResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

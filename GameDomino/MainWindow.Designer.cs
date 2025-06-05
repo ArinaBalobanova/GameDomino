@@ -34,7 +34,6 @@
             imageList1 = new ImageList(components);
             flowLayoutPanelOpponent = new FlowLayoutPanel();
             flowLayoutPanelPlayer = new FlowLayoutPanel();
-            lblTime = new Label();
             panelGameBoard = new Panel();
             btnPassTurn = new Button();
             btnNewGame = new Button();
@@ -44,18 +43,18 @@
             lblStatus = new Label();
             listViewPlayers = new ListView();
             lblRating = new Label();
-            flowLayoutPanelPlayer.SuspendLayout();
             SuspendLayout();
             // 
             // lblScore
             // 
             lblScore.BackColor = Color.FromArgb(101, 76, 51);
+            lblScore.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblScore.ForeColor = Color.White;
             lblScore.Location = new Point(22, 42);
             lblScore.Name = "lblScore";
             lblScore.Size = new Size(279, 43);
             lblScore.TabIndex = 1;
-            lblScore.Text = "label1";
+            lblScore.Text = "Счет";
             // 
             // imageList1
             // 
@@ -76,21 +75,10 @@
             // 
             flowLayoutPanelPlayer.BackgroundImage = (Image)resources.GetObject("flowLayoutPanelPlayer.BackgroundImage");
             flowLayoutPanelPlayer.BackgroundImageLayout = ImageLayout.Stretch;
-            flowLayoutPanelPlayer.Controls.Add(lblTime);
             flowLayoutPanelPlayer.Location = new Point(324, 553);
             flowLayoutPanelPlayer.Name = "flowLayoutPanelPlayer";
             flowLayoutPanelPlayer.Size = new Size(760, 173);
             flowLayoutPanelPlayer.TabIndex = 3;
-            // 
-            // lblTime
-            // 
-            lblTime.BackColor = Color.Transparent;
-            lblTime.ForeColor = Color.White;
-            lblTime.Location = new Point(3, 0);
-            lblTime.Name = "lblTime";
-            lblTime.Size = new Size(173, 39);
-            lblTime.TabIndex = 10;
-            lblTime.Text = "label1";
             // 
             // panelGameBoard
             // 
@@ -100,6 +88,7 @@
             panelGameBoard.Name = "panelGameBoard";
             panelGameBoard.Size = new Size(760, 322);
             panelGameBoard.TabIndex = 4;
+            panelGameBoard.Paint += panelGameBoard_Paint;
             // 
             // btnPassTurn
             // 
@@ -129,7 +118,7 @@
             // 
             btnInvite.BackColor = Color.FromArgb(234, 208, 178);
             btnInvite.FlatStyle = FlatStyle.Popup;
-            btnInvite.Location = new Point(168, 103);
+            btnInvite.Location = new Point(169, 107);
             btnInvite.Name = "btnInvite";
             btnInvite.Size = new Size(121, 27);
             btnInvite.TabIndex = 7;
@@ -139,7 +128,7 @@
             // 
             // listViewRatings
             // 
-            listViewRatings.Location = new Point(22, 90);
+            listViewRatings.Location = new Point(22, 440);
             listViewRatings.Name = "listViewRatings";
             listViewRatings.Size = new Size(279, 286);
             listViewRatings.TabIndex = 9;
@@ -154,17 +143,18 @@
             lblStatus.BackColor = Color.Tan;
             lblStatus.Location = new Point(816, 746);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(257, 47);
+            lblStatus.Size = new Size(257, 25);
             lblStatus.TabIndex = 0;
-            lblStatus.Text = "label1";
+            lblStatus.Text = "Статус";
             // 
             // listViewPlayers
             // 
-            listViewPlayers.Location = new Point(22, 442);
+            listViewPlayers.Location = new Point(22, 93);
             listViewPlayers.Name = "listViewPlayers";
             listViewPlayers.Size = new Size(279, 286);
             listViewPlayers.TabIndex = 12;
             listViewPlayers.UseCompatibleStateImageBehavior = false;
+            listViewPlayers.SelectedIndexChanged += listViewPlayers_SelectedIndexChanged;
             // 
             // lblRating
             // 
@@ -182,11 +172,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Tan;
             ClientSize = new Size(1096, 780);
-            Controls.Add(lblRating);
+            Controls.Add(btnInvite);
             Controls.Add(listViewPlayers);
+            Controls.Add(lblRating);
             Controls.Add(lblStatus);
             Controls.Add(listViewRatings);
-            Controls.Add(btnInvite);
             Controls.Add(btnNewGame);
             Controls.Add(btnPassTurn);
             Controls.Add(panelGameBoard);
@@ -195,9 +185,8 @@
             Controls.Add(lblScore);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "MainWindow";
-            Text = "MainWindow";
+            Text = "Игра домино";
             Load += MainWindow_Load;
-            flowLayoutPanelPlayer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -211,7 +200,6 @@
         private Button btnNewGame;
         private Button btnInvite;
         private ListView listViewRatings;
-        private Label lblTime;
         private System.Windows.Forms.Timer TimerGame;
         private Label lblStatus;
         private ListView listViewPlayers;
