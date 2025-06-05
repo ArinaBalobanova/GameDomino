@@ -5,7 +5,7 @@
 - Авторизация уже существующего в система аккаунотов пользователя
 - Функция локализации без перезагрузки приложения
 - Игра домино
-## Асинхронность 
+## Ассинхронность 
 В данном приложение присутствуют следующие ассинхронные методы: StartGameAsync(), PlaceTileAsync(), PassTurnAsync(), GetPlayerTilesAsync(),
 GetOpponentTilesAsync(), GetLeftEndTileAsync(), GetRightEndTileAsync(), IsValidMoveAsync(),SetupGame(), TimerGame_Tick(), OnGameEvent(), UpdateGameStateAsync(), Tile_MouseUp().
 ## База данных 
