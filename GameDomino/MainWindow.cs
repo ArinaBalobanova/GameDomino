@@ -9,6 +9,8 @@ namespace Domino2
  /// </summary>
     public partial class MainWindow : Form
     {
+        private object currObject = null;
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IDominoGameService _gameService;
         private readonly IUserService _userService;
@@ -29,6 +31,8 @@ namespace Domino2
             _userService = userService;
 
             SetupGame();
+            this.MouseMove += new MouseEventHandler(mouseEvent);
+            this.MouseClick += new MouseEventHandler(mouseClick);
             
         }
         public void SetUserId(Guid userId)
@@ -37,6 +41,16 @@ namespace Domino2
 
         }
 
+        private void mouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button.ToString() == "Right")
+                currObject = null;
+        }
+        private void mouseEvent(object sender, MouseEventArgs e)
+        {
+            if (currObject != null)
+                currObject.GetType().GetProperty("Location").SetValue(currObject, new Point(Cursor.Position.X, Cursor.Position.Y - 50));
+        }
         private async void SetupGame()
         {
             _gameTimer = new System.Windows.Forms.Timer { Interval = 1000 };
@@ -141,6 +155,7 @@ namespace Domino2
             var pictureBox = sender as PictureBox;
             if (pictureBox?.Tag is DominoTile tile)
             {
+                //currObject = sender;
                 _isDragging = true;
                 _draggedTile = tile;
                 _dragStart = e.Location;
@@ -156,6 +171,7 @@ namespace Domino2
             var pictureBox = sender as PictureBox;
             if (pictureBox != null)
             {
+                //currObject = sender;
                 pictureBox.Left += e.X - _dragStart.X;
                 pictureBox.Top += e.Y - _dragStart.Y;
             }
@@ -175,7 +191,7 @@ namespace Domino2
 
                 if (boardRect.IntersectsWith(tileRect))
                 {
-
+                    //currObject = sender;
                     var leftDistance = Math.Abs(tileRect.Left - boardRect.Left);
                     var rightDistance = Math.Abs(tileRect.Right - boardRect.Right);
                     var placeToLeft = leftDistance < rightDistance;
