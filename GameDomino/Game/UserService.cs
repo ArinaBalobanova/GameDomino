@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace Domino
+
+namespace GameDomino.Game
 {
     /// <summary>
     /// Сервисный класс для работы с бд 
@@ -13,7 +10,9 @@ namespace Domino
     public class UserService : IUserService
     {
         private readonly ApplicationDbContext _dbContext;
-
+        /// <summary>
+        /// Конструктор сервисного класса
+        /// </summary>
         public UserService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;

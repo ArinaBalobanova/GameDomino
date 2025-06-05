@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Domino
+namespace GameDomino.Game
 {
     /// <summary>
     /// класс бд

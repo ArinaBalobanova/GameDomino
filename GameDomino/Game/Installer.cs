@@ -1,10 +1,10 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Domino;
 using Domino2;
-using GameDomino;
 
-namespace Domino
+namespace GameDomino.Game
 {
     /// <summary>
     /// Класс для внедрения зависимостей(DI)
@@ -18,15 +18,9 @@ namespace Domino
         {
             container.Register(
                 Component.For<ApplicationDbContext>().LifestyleTransient(),
-                Component.For<IUserService>().ImplementedBy<UserService>().LifestyleTransient(),
                 Component.For<Entry>().LifestyleTransient(),
-                Component.For<Registration>().LifestyleTransient(),
-
-                Component.For<MainWindow>().UsingFactoryMethod(kernel =>
-                {
-                    return new MainWindow(Guid.Empty);
-                }).LifestyleTransient(),
-                Component.For<InviteForm>().LifestyleTransient()
+                Component.For<IUserService>().ImplementedBy<UserService>().LifestyleTransient(),
+                Component.For<IDominoGameService>().ImplementedBy<DominoGameService>().LifestyleTransient()
             );
         }
     }

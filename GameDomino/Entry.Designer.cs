@@ -44,17 +44,21 @@
             // 
             // lblTitle
             // 
+            lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(276, 57);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(309, 54);
+            lblTitle.Size = new Size(309, 65);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Доминирование";
             // 
             // lnlLogin
             // 
             lnlLogin.AutoSize = true;
+            lnlLogin.BackColor = Color.Transparent;
             lnlLogin.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lnlLogin.ForeColor = Color.White;
             lnlLogin.Location = new Point(276, 122);
             lnlLogin.Name = "lnlLogin";
             lnlLogin.Size = new Size(58, 23);
@@ -64,7 +68,9 @@
             // labelPassword
             // 
             labelPassword.AutoSize = true;
+            labelPassword.BackColor = Color.Transparent;
             labelPassword.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            labelPassword.ForeColor = Color.White;
             labelPassword.Location = new Point(276, 188);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(69, 23);
@@ -73,7 +79,9 @@
             // 
             // lblNoAccount
             // 
+            lblNoAccount.BackColor = Color.Transparent;
             lblNoAccount.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblNoAccount.ForeColor = Color.White;
             lblNoAccount.Location = new Point(276, 332);
             lblNoAccount.Name = "lblNoAccount";
             lblNoAccount.Size = new Size(156, 29);
@@ -82,6 +90,8 @@
             // 
             // textBoxLogin
             // 
+            textBoxLogin.BackColor = Color.FromArgb(218, 202, 191);
+            textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
             textBoxLogin.Location = new Point(276, 148);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(309, 27);
@@ -89,6 +99,8 @@
             // 
             // textBoxPassword
             // 
+            textBoxPassword.BackColor = Color.FromArgb(218, 202, 191);
+            textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
             textBoxPassword.Location = new Point(276, 214);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(309, 27);
@@ -107,51 +119,63 @@
             // 
             // btnEntry
             // 
+            btnEntry.BackColor = Color.FromArgb(99, 70, 52);
+            btnEntry.FlatStyle = FlatStyle.Popup;
             btnEntry.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btnEntry.ForeColor = Color.White;
             btnEntry.Location = new Point(340, 272);
             btnEntry.Name = "btnEntry";
             btnEntry.Size = new Size(186, 38);
             btnEntry.TabIndex = 7;
             btnEntry.Text = "Вход";
-            btnEntry.UseVisualStyleBackColor = true;
+            btnEntry.UseVisualStyleBackColor = false;
             btnEntry.Click += btnEntry_Click_1;
             // 
             // btnRegistration
             // 
+            btnRegistration.BackColor = Color.FromArgb(94, 54, 54);
+            btnRegistration.FlatStyle = FlatStyle.Popup;
             btnRegistration.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btnRegistration.ForeColor = Color.White;
             btnRegistration.Location = new Point(428, 331);
             btnRegistration.Name = "btnRegistration";
             btnRegistration.Size = new Size(157, 30);
             btnRegistration.TabIndex = 8;
             btnRegistration.Text = "Регистрация";
-            btnRegistration.UseVisualStyleBackColor = true;
+            btnRegistration.UseVisualStyleBackColor = false;
             btnRegistration.Click += btnRegistration_Click_1;
             // 
             // btnRussian
             // 
-            btnRussian.Location = new Point(577, 409);
+            btnRussian.BackColor = Color.FromArgb(218, 202, 191);
+            btnRussian.FlatStyle = FlatStyle.Popup;
+            btnRussian.Location = new Point(530, 409);
             btnRussian.Name = "btnRussian";
-            btnRussian.Size = new Size(112, 38);
+            btnRussian.Size = new Size(141, 38);
             btnRussian.TabIndex = 9;
             btnRussian.Text = "Русский";
-            btnRussian.UseVisualStyleBackColor = true;
+            btnRussian.UseVisualStyleBackColor = false;
             btnRussian.Click += btnRussian_Click;
             // 
             // btnEnglish
             // 
-            btnEnglish.Location = new Point(695, 409);
+            btnEnglish.BackColor = Color.FromArgb(218, 202, 191);
+            btnEnglish.FlatStyle = FlatStyle.Popup;
+            btnEnglish.Location = new Point(677, 409);
             btnEnglish.Name = "btnEnglish";
             btnEnglish.RightToLeft = RightToLeft.No;
-            btnEnglish.Size = new Size(123, 38);
+            btnEnglish.Size = new Size(141, 38);
             btnEnglish.TabIndex = 10;
             btnEnglish.Text = "Английский";
-            btnEnglish.UseVisualStyleBackColor = true;
+            btnEnglish.UseVisualStyleBackColor = false;
             btnEnglish.Click += btnEnglish_Click;
             // 
             // Entry
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(830, 459);
             Controls.Add(btnEnglish);
             Controls.Add(btnRussian);
@@ -164,6 +188,7 @@
             Controls.Add(labelPassword);
             Controls.Add(lnlLogin);
             Controls.Add(lblTitle);
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "Entry";
             Text = "Вход";
             ResumeLayout(false);

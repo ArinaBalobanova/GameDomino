@@ -1,8 +1,8 @@
-﻿using System;
+﻿
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Domino
+namespace GameDomino.Game
 {
     /// <summary>
     /// повтор методов

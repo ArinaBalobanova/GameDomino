@@ -1,9 +1,8 @@
 ﻿using Domino2;
 using GameDomino.Resources;
 using GameDomino;
-using GameDomino.Resources;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using GameDomino.Game;
+using NLog;
 
 namespace Domino
 {
@@ -14,6 +13,7 @@ namespace Domino
     {
         private readonly IUserService _userService;
         private bool isPasswordVisible = false;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// конструктор формы входа
@@ -41,7 +41,7 @@ namespace Domino
             btnRegistration.Text = EntryFormResources.btnRegistration;
             btnRussian.Text = EntryFormResources.btnRussian;
             btnEnglish.Text = EntryFormResources.btnEnglish;
-            
+
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
@@ -53,7 +53,9 @@ namespace Domino
         private void CheckLogin()
         {
             var login = textBoxLogin.Text;
+            logger.Info("Пользователь вводит логин");
             var pass = textBoxPassword.Text;
+            logger.Info("Пользователь вводит пароль");
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(pass))
             {
@@ -64,15 +66,18 @@ namespace Domino
 
             if (_userService.UserExists(login, pass, out Guid userId))
             {
+               
                 MessageBox.Show(EntryFormResources.LoginSuccessMessage,
                               EntryFormResources.LoginSuccessTitle,
                               MessageBoxButtons.OK,
                               MessageBoxIcon.Information);
+                logger.Info("Пользователь входит в приложение");
 
-                var mainForm = Program.Container.Resolve<MainWindow>();
-                mainForm.SetUserId(userId);
+                var mainForm = new MainWindow(userId,Program.Container.Resolve<IDominoGameService>(),
+                Program.Container.Resolve<IUserService>());
                 mainForm.Show();
                 this.Hide();
+                logger.Info("Пользователь переходит на главную страницу");
             }
             else
             {
@@ -91,6 +96,7 @@ namespace Domino
             registrationForm.Show();
 
             this.Hide();
+            logger.Info("Пользователь переходит на форму регистрации");
         }
 
         private void btnCheckPassword_Click(object sender, EventArgs e)
@@ -107,11 +113,13 @@ namespace Domino
         private void btnRussian_Click(object sender, EventArgs e)
         {
             LanguageManager.SetLanguage("ru");
+            logger.Info("Пользователь поменял язык интерфейса на русский");
         }
 
         private void btnEnglish_Click(object sender, EventArgs e)
         {
             LanguageManager.SetLanguage("en");
+            logger.Info("Пользователь поменял язык интерфейса на английский");
         }
     }
 }

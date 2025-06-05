@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameDomino.Game;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace GameDomino
 {
     public partial class InviteForm : Form
     {
-        public InviteForm()
+        public IUserService UserService { get; }
+        public InviteForm(IUserService userService)
         {
             InitializeComponent();
+            UserService = userService;
         }
     }
 }

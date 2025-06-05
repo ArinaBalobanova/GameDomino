@@ -1,10 +1,9 @@
 ﻿using Domino2;
 using GameDomino;
+using GameDomino.Game;
 using GameDomino.Resources;
-using Microsoft.Extensions.Logging;
+using NLog;
 using System.Text.RegularExpressions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
 namespace Domino
 {
     /// <summary>
@@ -12,6 +11,7 @@ namespace Domino
     /// </summary>
     public partial class Registration : Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IUserService _userService;
         private bool isPasswordVisible = false;
         /// <summary>
@@ -41,37 +41,40 @@ namespace Domino
         private void btnRegistration2_Click_1(object sender, EventArgs e)
         {
             string login = textBoxLogin.Text;
+            logger.Info("Пользователь вводит логин");
             string pass = textBoxPassword.Text;
+            logger.Info("Пользователь вводит пароль");
             string passRepeate = txtPasswordRepeate.Text;
+            logger.Info("Пользователь подтверждает пароль");
 
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(passRepeate))
             {
-                MessageBox.Show(RegistrationResources.EmptyFieldsError,RegistrationResources.RegistrationErrorTitle,
-                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show(RegistrationResources.EmptyFieldsError, RegistrationResources.RegistrationErrorTitle,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (pass != passRepeate)
             {
                 MessageBox.Show(RegistrationResources.PasswordMismatchError, RegistrationResources.RegistrationErrorTitle,
-                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!Regex.IsMatch(pass, @"^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"))
             {
-                MessageBox.Show(RegistrationResources.PasswordRequirementsError,RegistrationResources.RegistrationErrorTitle,
-                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show(RegistrationResources.PasswordRequirementsError, RegistrationResources.RegistrationErrorTitle,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!Regex.IsMatch(login, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$"))
             {
-                MessageBox.Show(RegistrationResources.LoginRequirementsError,RegistrationResources.RegistrationErrorTitle,
-                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show(RegistrationResources.LoginRequirementsError, RegistrationResources.RegistrationErrorTitle,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (_userService.LoginIsTaken(login))
             {
-                MessageBox.Show(RegistrationResources.LoginTakenError,RegistrationResources.RegistrationErrorTitle,
+                MessageBox.Show(RegistrationResources.LoginTakenError, RegistrationResources.RegistrationErrorTitle,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxLogin.Focus();
                 textBoxLogin.SelectAll();
@@ -80,18 +83,21 @@ namespace Domino
             try
             {
                 Guid userId = _userService.RegisterNewUser(login, pass);
-                MessageBox.Show(RegistrationResources.RegistrationSuccessMessage,RegistrationResources.RegistrationSuccessTitle,
-                    MessageBoxButtons.OK,MessageBoxIcon.Information);
-
-                var mainForm = Program.Container.Resolve<MainWindow>();
-                mainForm.SetUserId(userId);
+                MessageBox.Show(RegistrationResources.RegistrationSuccessMessage, RegistrationResources.RegistrationSuccessTitle,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var mainForm = new MainWindow(userId,Program.Container.Resolve<IDominoGameService>(),  
+                    Program.Container.Resolve<IUserService>());
                 mainForm.Show();
                 this.Hide();
+                logger.Info("Пользователь зарегистрировался");
+                
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(string.Format(RegistrationResources.RegistrationErrorTitle, ex.Message),
-                    RegistrationResources.RegistrationErrorMessage, MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    RegistrationResources.RegistrationErrorMessage, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info("Пользователь переходит на первую форму анкеты");
             }
         }
 
@@ -111,6 +117,6 @@ namespace Domino
         {
 
         }
-        
+
     }
 }

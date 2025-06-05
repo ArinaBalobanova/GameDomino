@@ -1,5 +1,8 @@
 using Castle.Windsor;
 using Domino;
+using Domino2;
+using GameDomino.Game;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.ComponentModel;
 
 namespace GameDomino
@@ -17,7 +20,6 @@ namespace GameDomino
             // see https://aka.ms/applicationconfiguration.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Container = new WindsorContainer();
             Container.Install(new WindsorInstaller());
             var entryForm = Container.Resolve<Entry>();

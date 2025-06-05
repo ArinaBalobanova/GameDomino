@@ -1,6 +1,4 @@
-﻿
-
-namespace Domino
+﻿namespace GameDomino.Game
 {
     /// <summary>
     /// Интерфейс сервиса для работы с пользователями

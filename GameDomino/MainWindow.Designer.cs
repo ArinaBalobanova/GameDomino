@@ -29,26 +29,31 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             lblScore = new Label();
             imageList1 = new ImageList(components);
             flowLayoutPanelOpponent = new FlowLayoutPanel();
             flowLayoutPanelPlayer = new FlowLayoutPanel();
+            lblTime = new Label();
             panelGameBoard = new Panel();
             btnPassTurn = new Button();
             btnNewGame = new Button();
             btnInvite = new Button();
-            btnPlaceTile = new Button();
             listViewRatings = new ListView();
-            lblTime = new Label();
             TimerGame = new System.Windows.Forms.Timer(components);
-            lblYourTurn = new Label();
+            lblStatus = new Label();
+            listViewPlayers = new ListView();
+            lblRating = new Label();
+            flowLayoutPanelPlayer.SuspendLayout();
             SuspendLayout();
             // 
             // lblScore
             // 
-            lblScore.Location = new Point(12, 9);
+            lblScore.BackColor = Color.FromArgb(101, 76, 51);
+            lblScore.ForeColor = Color.White;
+            lblScore.Location = new Point(22, 42);
             lblScore.Name = "lblScore";
-            lblScore.Size = new Size(144, 44);
+            lblScore.Size = new Size(279, 43);
             lblScore.TabIndex = 1;
             lblScore.Text = "label1";
             // 
@@ -60,103 +65,127 @@
             // 
             // flowLayoutPanelOpponent
             // 
+            flowLayoutPanelOpponent.BackgroundImage = (Image)resources.GetObject("flowLayoutPanelOpponent.BackgroundImage");
+            flowLayoutPanelOpponent.BackgroundImageLayout = ImageLayout.Stretch;
             flowLayoutPanelOpponent.Location = new Point(324, 90);
             flowLayoutPanelOpponent.Name = "flowLayoutPanelOpponent";
-            flowLayoutPanelOpponent.Size = new Size(760, 329);
+            flowLayoutPanelOpponent.Size = new Size(760, 148);
             flowLayoutPanelOpponent.TabIndex = 2;
             // 
             // flowLayoutPanelPlayer
             // 
-            flowLayoutPanelPlayer.Location = new Point(324, 536);
+            flowLayoutPanelPlayer.BackgroundImage = (Image)resources.GetObject("flowLayoutPanelPlayer.BackgroundImage");
+            flowLayoutPanelPlayer.BackgroundImageLayout = ImageLayout.Stretch;
+            flowLayoutPanelPlayer.Controls.Add(lblTime);
+            flowLayoutPanelPlayer.Location = new Point(324, 553);
             flowLayoutPanelPlayer.Name = "flowLayoutPanelPlayer";
-            flowLayoutPanelPlayer.Size = new Size(760, 190);
+            flowLayoutPanelPlayer.Size = new Size(760, 173);
             flowLayoutPanelPlayer.TabIndex = 3;
+            // 
+            // lblTime
+            // 
+            lblTime.BackColor = Color.Transparent;
+            lblTime.ForeColor = Color.White;
+            lblTime.Location = new Point(3, 0);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(173, 39);
+            lblTime.TabIndex = 10;
+            lblTime.Text = "label1";
             // 
             // panelGameBoard
             // 
-            panelGameBoard.Location = new Point(324, 425);
+            panelGameBoard.BackgroundImage = (Image)resources.GetObject("panelGameBoard.BackgroundImage");
+            panelGameBoard.BackgroundImageLayout = ImageLayout.Stretch;
+            panelGameBoard.Location = new Point(324, 236);
             panelGameBoard.Name = "panelGameBoard";
-            panelGameBoard.Size = new Size(760, 105);
+            panelGameBoard.Size = new Size(760, 322);
             panelGameBoard.TabIndex = 4;
             // 
             // btnPassTurn
             // 
-            btnPassTurn.Location = new Point(624, 46);
+            btnPassTurn.BackColor = Color.FromArgb(234, 208, 178);
+            btnPassTurn.FlatStyle = FlatStyle.Popup;
+            btnPassTurn.Location = new Point(324, 42);
             btnPassTurn.Name = "btnPassTurn";
-            btnPassTurn.Size = new Size(154, 29);
+            btnPassTurn.Size = new Size(379, 46);
             btnPassTurn.TabIndex = 5;
             btnPassTurn.Text = "Пропустить ход ";
-            btnPassTurn.UseVisualStyleBackColor = true;
+            btnPassTurn.UseVisualStyleBackColor = false;
             btnPassTurn.Click += btnPassTurn_Click;
             // 
             // btnNewGame
             // 
-            btnNewGame.Location = new Point(784, 46);
+            btnNewGame.BackColor = Color.FromArgb(234, 208, 178);
+            btnNewGame.FlatStyle = FlatStyle.Popup;
+            btnNewGame.Location = new Point(709, 42);
             btnNewGame.Name = "btnNewGame";
-            btnNewGame.Size = new Size(150, 29);
+            btnNewGame.Size = new Size(375, 46);
             btnNewGame.TabIndex = 6;
             btnNewGame.Text = "Новая игра";
-            btnNewGame.UseVisualStyleBackColor = true;
+            btnNewGame.UseVisualStyleBackColor = false;
             btnNewGame.Click += btnNewGame_Click;
             // 
             // btnInvite
             // 
-            btnInvite.Location = new Point(75, 194);
+            btnInvite.BackColor = Color.FromArgb(234, 208, 178);
+            btnInvite.FlatStyle = FlatStyle.Popup;
+            btnInvite.Location = new Point(168, 103);
             btnInvite.Name = "btnInvite";
-            btnInvite.Size = new Size(120, 29);
+            btnInvite.Size = new Size(121, 27);
             btnInvite.TabIndex = 7;
             btnInvite.Text = "Пригласить";
-            btnInvite.UseVisualStyleBackColor = true;
+            btnInvite.UseVisualStyleBackColor = false;
             btnInvite.Click += btnInvite_Click;
-            // 
-            // btnPlaceTile
-            // 
-            btnPlaceTile.Location = new Point(940, 46);
-            btnPlaceTile.Name = "btnPlaceTile";
-            btnPlaceTile.Size = new Size(144, 29);
-            btnPlaceTile.TabIndex = 8;
-            btnPlaceTile.Text = "Поставить фишку";
-            btnPlaceTile.UseVisualStyleBackColor = true;
-            btnPlaceTile.Click += btnPlaceTile_Click_1;
             // 
             // listViewRatings
             // 
-            listViewRatings.Location = new Point(12, 404);
+            listViewRatings.Location = new Point(22, 90);
             listViewRatings.Name = "listViewRatings";
-            listViewRatings.Size = new Size(306, 198);
+            listViewRatings.Size = new Size(279, 286);
             listViewRatings.TabIndex = 9;
             listViewRatings.UseCompatibleStateImageBehavior = false;
-            // 
-            // lblTime
-            // 
-            lblTime.Location = new Point(522, 771);
-            lblTime.Name = "lblTime";
-            lblTime.Size = new Size(538, 39);
-            lblTime.TabIndex = 10;
-            lblTime.Text = "label1";
             // 
             // TimerGame
             // 
             TimerGame.Tick += TimerGame_Tick;
             // 
-            // lblYourTurn
+            // lblStatus
             // 
-            lblYourTurn.Location = new Point(504, 46);
-            lblYourTurn.Name = "lblYourTurn";
-            lblYourTurn.Size = new Size(62, 25);
-            lblYourTurn.TabIndex = 11;
-            lblYourTurn.Text = "label1";
-            lblYourTurn.Click += lblYourTurn_Click;
+            lblStatus.BackColor = Color.Tan;
+            lblStatus.Location = new Point(816, 746);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(257, 47);
+            lblStatus.TabIndex = 0;
+            lblStatus.Text = "label1";
+            // 
+            // listViewPlayers
+            // 
+            listViewPlayers.Location = new Point(22, 442);
+            listViewPlayers.Name = "listViewPlayers";
+            listViewPlayers.Size = new Size(279, 286);
+            listViewPlayers.TabIndex = 12;
+            listViewPlayers.UseCompatibleStateImageBehavior = false;
+            // 
+            // lblRating
+            // 
+            lblRating.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblRating.Location = new Point(116, 398);
+            lblRating.Name = "lblRating";
+            lblRating.Size = new Size(101, 31);
+            lblRating.TabIndex = 0;
+            lblRating.Text = "Рейтинг";
+            lblRating.Click += label1_Click;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1096, 819);
-            Controls.Add(lblYourTurn);
-            Controls.Add(lblTime);
+            BackColor = Color.Tan;
+            ClientSize = new Size(1096, 780);
+            Controls.Add(lblRating);
+            Controls.Add(listViewPlayers);
+            Controls.Add(lblStatus);
             Controls.Add(listViewRatings);
-            Controls.Add(btnPlaceTile);
             Controls.Add(btnInvite);
             Controls.Add(btnNewGame);
             Controls.Add(btnPassTurn);
@@ -164,9 +193,11 @@
             Controls.Add(flowLayoutPanelPlayer);
             Controls.Add(flowLayoutPanelOpponent);
             Controls.Add(lblScore);
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "MainWindow";
             Text = "MainWindow";
             Load += MainWindow_Load;
+            flowLayoutPanelPlayer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -179,10 +210,11 @@
         private Button btnPassTurn;
         private Button btnNewGame;
         private Button btnInvite;
-        private Button btnPlaceTile;
         private ListView listViewRatings;
         private Label lblTime;
         private System.Windows.Forms.Timer TimerGame;
-        private Label lblYourTurn;
+        private Label lblStatus;
+        private ListView listViewPlayers;
+        private Label lblRating;
     }
 }

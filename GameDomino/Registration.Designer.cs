@@ -43,7 +43,9 @@
             // 
             // lblRegistration
             // 
+            lblRegistration.BackColor = Color.Transparent;
             lblRegistration.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblRegistration.ForeColor = Color.White;
             lblRegistration.Location = new Point(323, 75);
             lblRegistration.Name = "lblRegistration";
             lblRegistration.Size = new Size(227, 46);
@@ -53,7 +55,9 @@
             // lblPassword
             // 
             lblPassword.AutoSize = true;
+            lblPassword.BackColor = Color.Transparent;
             lblPassword.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblPassword.ForeColor = Color.White;
             lblPassword.Location = new Point(298, 204);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(69, 23);
@@ -63,7 +67,9 @@
             // lblLogin
             // 
             lblLogin.AutoSize = true;
+            lblLogin.BackColor = Color.Transparent;
             lblLogin.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblLogin.ForeColor = Color.White;
             lblLogin.Location = new Point(298, 139);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(58, 23);
@@ -73,7 +79,9 @@
             // lblPasswortRepeate
             // 
             lblPasswortRepeate.AutoSize = true;
+            lblPasswortRepeate.BackColor = Color.Transparent;
             lblPasswortRepeate.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblPasswortRepeate.ForeColor = Color.White;
             lblPasswortRepeate.Location = new Point(298, 267);
             lblPasswortRepeate.Name = "lblPasswortRepeate";
             lblPasswortRepeate.Size = new Size(156, 23);
@@ -82,17 +90,22 @@
             // 
             // btnRegistration2
             // 
+            btnRegistration2.BackColor = Color.FromArgb(99, 70, 52);
+            btnRegistration2.FlatStyle = FlatStyle.Popup;
             btnRegistration2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btnRegistration2.ForeColor = Color.White;
             btnRegistration2.Location = new Point(323, 347);
             btnRegistration2.Name = "btnRegistration2";
             btnRegistration2.Size = new Size(205, 36);
             btnRegistration2.TabIndex = 5;
             btnRegistration2.Text = "Зарегистрироваться";
-            btnRegistration2.UseVisualStyleBackColor = true;
+            btnRegistration2.UseVisualStyleBackColor = false;
             btnRegistration2.Click += btnRegistration2_Click_1;
             // 
             // textBoxLogin
             // 
+            textBoxLogin.BackColor = Color.FromArgb(218, 202, 191);
+            textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
             textBoxLogin.Location = new Point(298, 165);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(268, 27);
@@ -100,6 +113,8 @@
             // 
             // txtPasswordRepeate
             // 
+            txtPasswordRepeate.BackColor = Color.FromArgb(218, 202, 191);
+            txtPasswordRepeate.BorderStyle = BorderStyle.FixedSingle;
             txtPasswordRepeate.Location = new Point(298, 293);
             txtPasswordRepeate.Name = "txtPasswordRepeate";
             txtPasswordRepeate.Size = new Size(268, 27);
@@ -107,6 +122,8 @@
             // 
             // textBoxPassword
             // 
+            textBoxPassword.BackColor = Color.FromArgb(218, 202, 191);
+            textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
             textBoxPassword.Location = new Point(298, 230);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(268, 27);
@@ -138,6 +155,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(btnCheckRepPassword);
             Controls.Add(btnCheckPassword);
@@ -149,6 +168,7 @@
             Controls.Add(lblLogin);
             Controls.Add(lblPassword);
             Controls.Add(lblRegistration);
+            ForeColor = Color.Transparent;
             Name = "Registration";
             Text = "Регистрация";
             Load += Registration_Load;

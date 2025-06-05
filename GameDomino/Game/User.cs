@@ -1,6 +1,5 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Domino
+﻿
+namespace GameDomino.Game
 {
     /// <summary>
     /// класс пользователя
